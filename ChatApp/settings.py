@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chat',
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'ChatApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'chat/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -76,8 +78,12 @@ WSGI_APPLICATION = 'ChatApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'chat-app',
+        'USER': 'root',
+        'PASSWORD': 'rIu5^e0NsYH1',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

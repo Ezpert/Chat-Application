@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div>
+        <h1>
+            Please enter a Username for the Chat-Room
+        </h1>
+
+        <form action="{% url 'chat:homepage' %}" method="POST">
+
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            <button type="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
