@@ -17,6 +17,7 @@ def homepage(request):
             # Check if the there is a user in the database
             auth = authenticate(request, username=username, password=password)
             if auth is not None:
+                request.session['username'] = username
                 return redirect('chat:chat-page')
             else:
                 return HttpResponse("Invalid username or password")
@@ -27,6 +28,13 @@ def homepage(request):
 
 
 def messagePage(request):
+    username = request.session.get('username')
+    if not username:
+        return redirect('login-page')
+
+    if request.method == 'POST':
+        message = request.POST.get('message')
+
     return render(request, 'chat-room-page.html')
 
 
