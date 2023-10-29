@@ -1,14 +1,16 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-    <div>
-        <h1>
-            Please enter a Username for the Chat-Room
+    <div class="container-div">
+        <h1 class="tellme">
+            Please enter your Username and password for the Chat-Room
         </h1>
 
         <form action="{% url 'chat:homepage' %}" method="POST">
@@ -16,10 +18,17 @@
             {% csrf_token %}
             <label for="username">Username:</label>
             <input type="text" name="username" id="username">
+
+            <label for="password">Password:</label>
+            <input  type="text" name="password" id="password">
+
             <button type="submit">Submit</button>
 
         </form>
+    </div>
 
+    <div>
+        <p>Don't have an Account? <a href="signup/">Sign up</a></p>
     </div>
 
 </body>
