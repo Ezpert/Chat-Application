@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import MyForm
@@ -39,6 +38,7 @@ def messagePage(request):
 
 
 def signUp(request):
+    # if a form was submitted with the request then do this
     if request.method == 'POST':
         form = MyForm(request.POST)
         if form.is_valid():
@@ -47,16 +47,16 @@ def signUp(request):
 
             # Checks if the username is already taken inside the database
             # So we don't have duplicate users
-            if User.objects.filter(username=username).exists():
+            if UserProfile.objects.filter(username=username).exists():
                 return HttpResponse("Username already exists")
 
             # Create a new User object
-            user = User.objects.create_user(username=username, password=password)
-            # Create a new UserProfile object
-            user_profile = UserProfile(user=user)
-            user_profile.save()
+            user = UserProfile.objects.create_user(username=username, password=password)
+            # saves to database
+            user.save()
+            # redirects to the login page!
             return redirect('chat:homepage')
-
+    # otherwise simply return the page and prep the form for submission
     else:
         form = MyForm()
     return render(request, 'signUpPage.html', {'form': form})

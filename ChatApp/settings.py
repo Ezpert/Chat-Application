@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = 'ChatApp.asgi.application'
 
-
 CHANNEL_LAYERS = {
     'default':
         {
@@ -58,6 +57,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+
 ]
 
 ROOT_URLCONF = 'ChatApp.urls'
@@ -94,6 +99,8 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+AUTH_USER_MODEL = 'chat.UserProfile'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -138,3 +145,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/'
